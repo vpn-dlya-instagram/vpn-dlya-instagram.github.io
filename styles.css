@@ -1,0 +1,1000 @@
+/* ============================================================
+   VPN для Instagram — Design System 2026
+   Palette: deep-dark · instagram-gradient (purple→pink→orange)
+   Fonts: Plus Jakarta Sans (headings) · Inter (body)
+   ============================================================ */
+
+:root {
+  --bg:    #09090C;
+  --bg2:   #0F0F14;
+  --bg3:   #161620;
+  --bg4:   #1E1E2A;
+
+  --surface:  rgba(255,255,255,0.04);
+  --surface2: rgba(255,255,255,0.07);
+  --border:   rgba(255,255,255,0.08);
+  --border2:  rgba(193,53,132,0.28);
+
+  --ip:  #833AB4;
+  --im:  #C13584;
+  --ipk: #E1306C;
+  --ior: #F77737;
+  --iy:  #FCAF45;
+
+  --grad-insta: linear-gradient(115deg, #833AB4 0%, #E1306C 50%, #FCAF45 100%);
+  --grad-btn:   linear-gradient(90deg, #833AB4, #E1306C);
+  --grad-warm:  linear-gradient(90deg, #E1306C, #F77737);
+
+  --green:  #22C55E;
+  --green2: #4ADE80;
+  --amber:  #F59E0B;
+  --rose:   #F43F5E;
+  --blue2:  #60A5FA;
+
+  --text:  #F0F0F8;
+  --text2: #9090AC;
+  --muted: #48485E;
+
+  --r8:  8px;  --r12: 12px; --r16: 16px;
+  --r20: 20px; --r24: 24px; --pill: 999px;
+
+  --shadow:  0 4px 24px rgba(0,0,0,0.5);
+  --shadow2: 0 16px 48px rgba(0,0,0,0.7);
+  --glow:    0 0 48px rgba(225,48,108,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5 {
+  font-family: 'Plus Jakarta Sans','Inter',system-ui,sans-serif;
+  font-weight: 700; line-height: 1.2; color: var(--text);
+}
+h1 { font-size: clamp(2rem,4.5vw,3.2rem); }
+h2 { font-size: clamp(1.4rem,3vw,2.1rem); }
+h3 { font-size: clamp(1.05rem,2.2vw,1.35rem); }
+h4 { font-size: 0.97rem; }
+
+p      { color: var(--text2); }
+a      { color: var(--ipk); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--iy); }
+strong { color: var(--text); font-weight: 600; }
+em     { color: var(--ior); font-style: normal; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--ipk); border-radius: 2px; }
+
+/* ── READ PROGRESS ── */
+#read-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: var(--grad-insta); z-index: 1000; transition: width .1s;
+}
+
+/* ── NAVIGATION ── */
+.site-nav {
+  position: sticky; top: 0; z-index: 900;
+  background: rgba(9,9,12,.92);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0; transition: box-shadow .3s;
+}
+.site-nav.scrolled { box-shadow: 0 4px 32px rgba(225,48,108,.07); }
+
+.nav-inner { display: flex; align-items: center; gap: 12px; }
+
+.nav-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Plus Jakarta Sans',sans-serif;
+  font-weight: 700; font-size: 1rem;
+  color: var(--text) !important; white-space: nowrap;
+  text-decoration: none; flex-shrink: 0;
+}
+.logo-icon {
+  width: 28px; height: 28px; background: var(--grad-btn);
+  border-radius: var(--r8);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.logo-word {
+  background: var(--grad-insta);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-pills {
+  display: flex; list-style: none; gap: 2px; flex: 1;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-pills::-webkit-scrollbar { display: none; }
+.nav-pills li a {
+  display: block; padding: 5px 11px; border-radius: var(--pill);
+  font-size: .8rem; font-weight: 500;
+  color: var(--text2) !important; white-space: nowrap; transition: all .2s;
+}
+.nav-pills li a:hover { background: var(--surface2); color: var(--text) !important; }
+
+.nav-cta {
+  padding: 7px 15px; background: var(--grad-btn);
+  border-radius: var(--pill); font-size: .8rem; font-weight: 700;
+  color: #fff !important; white-space: nowrap; flex-shrink: 0; transition: opacity .2s;
+}
+.nav-cta:hover { opacity: .85; color: #fff !important; }
+
+.burger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer;
+  padding: 4px; margin-left: auto; flex-shrink: 0;
+}
+.burger span { display: block; width: 20px; height: 2px; background: var(--text); border-radius: 2px; }
+
+/* ── MOBILE MENU ── */
+.mobile-menu {
+  display: none; flex-direction: column; gap: 2px;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 12px 20px 16px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  padding: 9px 12px; color: var(--text2) !important;
+  font-size: .9rem; border-radius: var(--r8); transition: background .15s;
+}
+.mobile-menu a:hover { background: var(--surface); color: var(--text) !important; }
+.mobile-menu .mm-cta { margin-top: 8px; background: var(--grad-btn); color: #fff !important; font-weight: 600; text-align: center; }
+
+/* ── HERO ── */
+.hero { position: relative; padding: 60px 0 52px; overflow: hidden; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 80% 15%, rgba(131,58,180,.20) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 45% at 15% 85%, rgba(225,48,108,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 30% at 50% 50%, rgba(247,119,55,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(131,58,180,.10); border: 1px solid rgba(131,58,180,.22);
+  border-radius: var(--pill); padding: 5px 13px;
+  font-size: .76rem; font-weight: 600; color: var(--im);
+  letter-spacing: .04em; text-transform: uppercase; margin-bottom: 18px;
+}
+.live-dot {
+  width: 6px; height: 6px; background: var(--green);
+  border-radius: 50%; box-shadow: 0 0 6px var(--green);
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.3} }
+
+.hero-title { margin-bottom: 18px; line-height: 1.1; }
+.hl {
+  background: var(--grad-insta);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc    { font-size: 1.02rem; color: var(--text2); margin-bottom: 26px; max-width: 520px; }
+.hero-stats   { display: flex; gap: 24px; margin-bottom: 30px; flex-wrap: wrap; }
+.hero-stat    { display: flex; flex-direction: column; }
+.stat-val {
+  font-family: 'Plus Jakarta Sans',sans-serif;
+  font-size: 1.65rem; font-weight: 800;
+  background: var(--grad-insta);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1;
+}
+.stat-lbl { font-size: .73rem; color: var(--muted); margin-top: 3px; }
+
+.hero-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 12px 22px; border-radius: var(--pill);
+  font-weight: 700; font-size: .88rem;
+  transition: all .2s; cursor: pointer; border: none; text-decoration: none;
+}
+.btn-primary { background: var(--grad-btn); color: #fff; box-shadow: 0 4px 20px rgba(225,48,108,.28); }
+.btn-primary:hover { opacity: .87; transform: translateY(-1px); color: #fff; }
+.btn-ghost { background: var(--surface); border: 1px solid var(--border2); color: var(--text); }
+.btn-ghost:hover { background: var(--surface2); color: var(--text); }
+
+.update-bar {
+  padding: 9px 13px; background: rgba(247,119,55,.07);
+  border: 1px solid rgba(247,119,55,.16);
+  border-radius: var(--r12); font-size: .78rem; color: var(--ior);
+}
+
+/* ── HERO VISUAL ── */
+.hero-visual { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.insta-mockup {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 22px; overflow: hidden; width: 100%; max-width: 300px;
+  box-shadow: var(--shadow2), var(--glow);
+}
+.im-top {
+  background: var(--bg4); padding: 9px 14px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.im-insta-icon {
+  width: 26px; height: 26px; background: var(--grad-btn);
+  border-radius: 7px; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; flex-shrink: 0;
+}
+.im-app-name { font-weight: 700; font-size: .82rem; color: var(--text); }
+.im-vpn-pill {
+  margin-left: auto; padding: 2px 7px;
+  background: rgba(34,197,94,.10); border: 1px solid rgba(34,197,94,.22);
+  border-radius: var(--pill); font-size: .68rem; color: var(--green); font-weight: 600;
+}
+.im-body { padding: 10px 14px; }
+.im-story-row { display: flex; gap: 7px; margin-bottom: 10px; }
+.im-story { width: 44px; text-align: center; flex-shrink: 0; }
+.im-story-ring { width: 38px; height: 38px; border-radius: 50%; background: var(--grad-insta); margin: 0 auto 3px; padding: 2px; }
+.im-story-inner { width: 100%; height: 100%; background: var(--bg3); border-radius: 50%; }
+.im-story-lbl   { font-size: .58rem; color: var(--text2); }
+.im-post { background: var(--bg4); border-radius: var(--r12); padding: 9px; }
+.im-post-header { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; }
+.im-avatar   { width: 24px; height: 24px; border-radius: 50%; background: var(--grad-warm); }
+.im-username { font-size: .75rem; font-weight: 600; color: var(--text); }
+.im-time     { font-size: .67rem; color: var(--muted); margin-left: auto; }
+.im-post-img {
+  height: 64px; background: linear-gradient(135deg,#1E1E2A,#2A1E2A);
+  border-radius: var(--r8); margin-bottom: 7px;
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+}
+.im-actions { display: flex; gap: 10px; }
+.im-action  { font-size: .68rem; color: var(--text2); }
+.im-status-row {
+  padding: 7px 14px; background: rgba(34,197,94,.05);
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 6px;
+  font-size: .7rem; color: var(--green2);
+}
+.im-blink { width: 5px; height: 5px; background: var(--green); border-radius: 50%; animation: blink 1.5s infinite; }
+
+.hero-side-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; max-width: 300px; }
+.side-stat-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r16); padding: 11px 13px; text-align: center;
+}
+.side-stat-card .val {
+  font-family: 'Plus Jakarta Sans',sans-serif; font-size: 1.1rem; font-weight: 800;
+  background: var(--grad-insta);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.side-stat-card .lbl { font-size: .66rem; color: var(--muted); margin-top: 2px; }
+
+/* ── DIVIDER ── */
+.divider { height: 1px; background: linear-gradient(90deg,transparent,var(--border),transparent); }
+
+/* ── SECTIONS ── */
+.section    { padding: 60px 0; }
+.section-sm { padding: 32px 0; }
+.mt8  { margin-top: 8px;  }
+.mt16 { margin-top: 16px; }
+.mt24 { margin-top: 24px; }
+
+/* ── SEC LABEL ── */
+.sec-label { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.sec-num {
+  font-family: 'Plus Jakarta Sans',sans-serif; font-size: .73rem; font-weight: 800;
+  background: var(--grad-btn);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.sec-tag        { font-size: .7rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.section-title  { margin-bottom: 10px; }
+.section-desc   { color: var(--text2); font-size: 1rem; max-width: 660px; margin-bottom: 30px; }
+
+/* ── AUTHOR BOX ── */
+.author-box {
+  display: flex; gap: 18px; align-items: flex-start;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r20); padding: 18px 22px;
+  position: relative; overflow: hidden;
+}
+.author-box::before {
+  content:''; position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+  background: var(--grad-insta);
+}
+.author-photo {
+  width: 50px; height: 50px; border-radius: 50%; background: var(--grad-btn);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0; overflow: hidden;
+}
+.author-photo img { width: 100%; height: 100%; object-fit: cover; }
+.author-name { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .97rem; margin-bottom: 2px; }
+.author-role { font-size: .76rem; color: var(--ipk); margin-bottom: 7px; }
+.author-bio  { font-size: .86rem; color: var(--text2); }
+.author-pubs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+.author-pub  { padding: 2px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--pill); font-size: .7rem; color: var(--text2); }
+
+/* ── TL;DR PANEL ── */
+.tldr-panel {
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--r24); padding: 22px;
+  position: relative; overflow: hidden;
+}
+.tldr-panel::before {
+  content:''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad-insta);
+}
+.tldr-top   { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; gap: 10px; }
+.tldr-label { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .97rem; }
+.tldr-badge { padding: 3px 10px; background: rgba(131,58,180,.10); border: 1px solid rgba(131,58,180,.22); border-radius: var(--pill); font-size: .7rem; color: var(--im); font-weight: 600; }
+.tldr-grid  { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 12px; }
+.tldr-card  { background: var(--bg4); border-radius: var(--r16); padding: 11px 13px; border: 1px solid var(--border); }
+.tldr-card .rank { font-size: .68rem; color: var(--ipk); font-weight: 600; margin-bottom: 3px; }
+.tldr-card .name { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; color: var(--text); font-size: .9rem; margin-bottom: 3px; }
+.tldr-card .use  { font-size: .7rem; color: var(--text2); }
+.tldr-note  { font-size: .83rem; color: var(--text2); border-top: 1px solid var(--border); padding-top: 12px; }
+
+/* ── STATUS GRID ── */
+.status-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 22px; }
+.status-card { padding: 15px; border-radius: var(--r20); border: 1px solid var(--border); }
+.status-card.nope    { background: rgba(244,63,94,.05);  border-color: rgba(244,63,94,.14);  }
+.status-card.partial { background: rgba(245,158,11,.05); border-color: rgba(245,158,11,.14); }
+.status-card.works   { background: rgba(34,197,94,.05);  border-color: rgba(34,197,94,.14);  }
+.status-icon { font-size: 1.4rem; margin-bottom: 7px; }
+.status-card h5 { font-size: .85rem; margin-bottom: 5px; }
+.status-card p  { font-size: .78rem; }
+
+/* ── CALLOUTS ── */
+.callout      { display: flex; gap: 11px; padding: 14px 16px; border-radius: var(--r16); border: 1px solid; }
+.callout-icon { font-size: 1.1rem; flex-shrink: 0; padding-top: 1px; }
+.callout-body { font-size: .86rem; color: var(--text2); }
+.callout-body strong { color: var(--text); }
+.callout-body ul     { padding-left: 16px; margin-top: 5px; }
+.callout-body li     { margin-bottom: 4px; font-size: .83rem; }
+.callout-info    { background: rgba(59,130,246,.05);  border-color: rgba(59,130,246,.16); }
+.callout-warn    { background: rgba(245,158,11,.05);  border-color: rgba(245,158,11,.16); }
+.callout-success { background: rgba(34,197,94,.05);   border-color: rgba(34,197,94,.16);  }
+.callout-insta   { background: rgba(225,48,108,.05);  border-color: rgba(225,48,108,.16); }
+
+/* ── BENTO GRID ── */
+.bento-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.bento-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r20); padding: 16px; transition: border-color .2s;
+}
+.bento-card:hover { border-color: var(--border2); }
+.bento-card.wide  { grid-column: span 3; }
+.bento-icon  { font-size: 1.3rem; margin-bottom: 7px; }
+.bento-card h4 { margin-bottom: 5px; font-size: .93rem; }
+.bento-card p  { font-size: .82rem; }
+
+/* ── INFO GRID ── */
+.info-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.info-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r20); padding: 16px; transition: border-color .2s;
+}
+.info-card:hover { border-color: var(--border2); }
+.info-card-icon { font-size: 1.4rem; margin-bottom: 9px; }
+.info-card h4 { font-size: .93rem; margin-bottom: 5px; }
+.info-card p  { font-size: .82rem; }
+
+.accent-blurple { border-left: 3px solid var(--ip);    }
+.accent-pink    { border-left: 3px solid var(--ipk);   }
+.accent-orange  { border-left: 3px solid var(--ior);   }
+.accent-cyan    { border-left: 3px solid #06B6D4;      }
+.accent-green   { border-left: 3px solid var(--green); }
+.accent-rose    { border-left: 3px solid var(--rose);  }
+.accent-amber   { border-left: 3px solid var(--amber); }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
+.tag { padding: 2px 7px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--pill); font-size: .68rem; color: var(--text2); }
+
+/* ── FILTER BAR ── */
+.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+.filter-btn {
+  padding: 6px 13px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--pill); font-size: .78rem; font-weight: 500;
+  color: var(--text2); cursor: pointer; transition: all .2s;
+}
+.filter-btn:hover,.filter-btn.active {
+  background: var(--grad-btn); border-color: transparent; color: #fff;
+}
+.filter-btn.active { box-shadow: 0 0 14px rgba(225,48,108,.22); }
+
+/* ── VPN CARDS ── */
+.top-list { display: flex; flex-direction: column; gap: 18px; }
+.vpn-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r24); overflow: hidden; position: relative;
+  transition: border-color .2s, box-shadow .2s;
+}
+.vpn-card::before {
+  content:''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad-insta); opacity: 0; transition: opacity .25s;
+}
+.vpn-card.top3           { border-color: rgba(131,58,180,.18); }
+.vpn-card.top3::before   { opacity: 1; }
+.vpn-card:hover          { border-color: var(--border2); }
+.vpn-card:hover::before  { opacity: 1; }
+
+.vpn-card-inner { padding: 20px 22px 16px; }
+.vpn-card-head  { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 13px; }
+
+.rank-badge {
+  flex-shrink: 0; width: 36px; height: 36px; border-radius: var(--r12);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 800; font-size: .97rem;
+}
+.rank-1     { background: var(--grad-insta); color: #fff; box-shadow: 0 4px 14px rgba(225,48,108,.32); }
+.rank-2     { background: linear-gradient(135deg,#C13584,#E1306C); color: #fff; }
+.rank-3     { background: linear-gradient(135deg,#833AB4,#C13584); color: #fff; }
+.rank-other { background: var(--bg4); border: 1px solid var(--border); color: var(--text2); font-size: .85rem; }
+
+.vpn-name-block { flex: 1; min-width: 0; }
+.vpn-label {
+  display: inline-block; padding: 2px 7px; border-radius: var(--pill);
+  font-size: .66rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; margin-bottom: 4px;
+}
+.label-top  { background: rgba(225,48,108,.10); color: var(--ipk);  border: 1px solid rgba(225,48,108,.18); }
+.label-free { background: rgba(34,197,94,.08);  color: var(--green); border: 1px solid rgba(34,197,94,.18);  }
+.label-ext  { background: rgba(59,130,246,.08); color: var(--blue2); border: 1px solid rgba(59,130,246,.18);  }
+.label-open { background: rgba(245,158,11,.08); color: var(--amber); border: 1px solid rgba(245,158,11,.18); }
+.label-new  { background: rgba(247,119,55,.08); color: var(--ior);   border: 1px solid rgba(247,119,55,.18); }
+.label-intl { background: rgba(131,58,180,.08); color: var(--im);    border: 1px solid rgba(131,58,180,.18); }
+
+.vpn-name-row { display: flex; align-items: center; gap: 7px; margin-bottom: 3px; }
+.vpn-logo     { width: 22px; height: 22px; border-radius: 5px; object-fit: contain; }
+.vpn-name     { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: 1.08rem; }
+.vpn-tagline  { font-size: .77rem; color: var(--text2); }
+
+.vpn-score-block { text-align: right; flex-shrink: 0; }
+.vpn-score {
+  font-family: 'Plus Jakarta Sans',sans-serif; font-size: 1.55rem; font-weight: 800;
+  background: var(--grad-insta);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1;
+}
+.vpn-score-lbl { font-size: .66rem; color: var(--muted); }
+
+/* ── CHIPS ── */
+.vpn-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 13px; }
+.chip { padding: 3px 8px; border-radius: var(--pill); font-size: .7rem; font-weight: 500; }
+.chip-insta  { background: rgba(225,48,108,.08); color: var(--ipk);  border: 1px solid rgba(225,48,108,.18); }
+.chip-purple { background: rgba(131,58,180,.08); color: var(--im);   border: 1px solid rgba(131,58,180,.18); }
+.chip-green  { background: rgba(34,197,94,.08);  color: var(--green); border: 1px solid rgba(34,197,94,.18); }
+.chip-amber  { background: rgba(245,158,11,.08); color: var(--amber); border: 1px solid rgba(245,158,11,.18); }
+.chip-blue   { background: rgba(59,130,246,.08); color: var(--blue2); border: 1px solid rgba(59,130,246,.18); }
+.chip-orange { background: rgba(247,119,55,.08); color: var(--ior);   border: 1px solid rgba(247,119,55,.18); }
+.chip-gray   { background: var(--surface);       color: var(--text2); border: 1px solid var(--border);        }
+
+/* ── VPN META ROW ── */
+.vpn-meta-row {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 7px;
+  margin-bottom: 13px; padding: 11px 0;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+}
+.meta-item .key { font-size: .68rem; color: var(--muted); margin-bottom: 2px; }
+.meta-item .val { font-size: .8rem; font-weight: 600; color: var(--text); }
+
+/* ── VPN BODY ── */
+.vpn-body { margin-bottom: 13px; }
+.vpn-body p { font-size: .86rem; margin-bottom: 7px; }
+.vpn-body p:last-child { margin-bottom: 0; }
+
+/* ── PROS CONS ── */
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 13px; }
+.pros,.cons { background: var(--bg4); border-radius: var(--r16); padding: 11px 13px; }
+.pros { border-left: 3px solid var(--green); }
+.cons { border-left: 3px solid var(--rose);  }
+.pros-title,.cons-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 7px; }
+.pros-title { color: var(--green); }
+.cons-title { color: var(--rose);  }
+.pros ul,.cons ul { list-style: none; }
+.pros li,.cons li { position: relative; padding-left: 13px; font-size: .8rem; color: var(--text2); margin-bottom: 4px; }
+.pros li::before { content:'+'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.cons li::before { content:'−'; position: absolute; left: 0; color: var(--rose);  font-weight: 700; }
+
+/* ── CTA ROW ── */
+.vpn-cta-row { display: flex; gap: 7px; flex-wrap: wrap; }
+.btn-sm {
+  display: inline-flex; align-items: center; padding: 8px 16px;
+  border-radius: var(--pill); font-size: .8rem; font-weight: 700;
+  transition: all .2s; border: none; cursor: pointer; text-decoration: none;
+}
+.btn-accent { background: var(--grad-btn); color: #fff; box-shadow: 0 4px 14px rgba(225,48,108,.22); }
+.btn-accent:hover { opacity: .86; color: #fff; transform: translateY(-1px); }
+.btn-outline { background: var(--surface); border: 1px solid var(--border2); color: var(--text); }
+.btn-outline:hover { background: var(--surface2); color: var(--text); }
+
+/* ── EXPAND ── */
+.vpn-expand-btn {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 11px 22px;
+  background: var(--bg4); border: none; border-top: 1px solid var(--border);
+  color: var(--text2); font-size: .8rem; cursor: pointer; transition: background .2s;
+}
+.vpn-expand-btn:hover { background: var(--surface); color: var(--text); }
+.vpn-expand-btn .arrow     { transition: transform .25s; }
+.vpn-expand-btn.open .arrow { transform: rotate(180deg); }
+.vpn-extra      { display: none; padding: 18px 22px; border-top: 1px solid var(--border); }
+.vpn-extra.open { display: block; }
+
+/* ── DEVICE TABLE ── */
+.device-table-wrap { overflow-x: auto; }
+.device-table      { width: 100%; border-collapse: collapse; font-size: .8rem; }
+.device-table th   { text-align: left; padding: 7px 9px; color: var(--muted); font-size: .7rem; font-weight: 600; text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.device-table td   { padding: 8px 9px; border-bottom: 1px solid var(--border); color: var(--text2); }
+.device-table td.model { font-weight: 500; color: var(--text); }
+
+/* ── BADGES ── */
+.badge         { padding: 2px 7px; border-radius: var(--pill); font-size: .7rem; font-weight: 600; }
+.badge-yes     { background: rgba(34,197,94,.08);  color: var(--green); }
+.badge-no      { background: rgba(244,63,94,.08);  color: var(--rose);  }
+.badge-partial { background: rgba(245,158,11,.08); color: var(--amber); }
+
+/* ── STEPS ── */
+.steps { display: flex; flex-direction: column; }
+.step  { display: flex; gap: 14px; position: relative; padding-bottom: 22px; }
+.step:last-child { padding-bottom: 0; }
+.step::before { content:''; position: absolute; left: 16px; top: 34px; bottom: 0; width: 2px; background: var(--border); }
+.step:last-child::before { display: none; }
+.step-num {
+  flex-shrink: 0; width: 32px; height: 32px; background: var(--grad-btn);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .82rem; color: #fff;
+  box-shadow: 0 3px 10px rgba(225,48,108,.22); position: relative; z-index: 1;
+}
+.step-body h4 { font-size: .93rem; margin-bottom: 5px; }
+.step-body p  { font-size: .83rem; }
+.code { font-family: monospace; background: var(--bg4); padding: 1px 5px; border-radius: 4px; font-size: .82em; color: var(--ior); }
+
+/* ── PILL TABS ── */
+.pill-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+.pill-tab {
+  padding: 7px 16px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--pill); font-size: .83rem; font-weight: 600;
+  color: var(--text2); cursor: pointer; transition: all .2s;
+}
+.pill-tab.active { background: var(--grad-btn); border-color: transparent; color: #fff; box-shadow: 0 4px 14px rgba(225,48,108,.18); }
+.pill-tab:hover:not(.active) { background: var(--surface2); color: var(--text); }
+.tab-content        { display: none; }
+.tab-content.active { display: block; }
+
+/* ── SHORTCUTS BLOCK ── */
+.shortcuts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.shortcut-platform {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r20); padding: 18px;
+}
+.shortcut-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.shortcut-header h4 { font-size: .95rem; margin: 0; }
+.sp-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.sp-ios     { background: linear-gradient(135deg,#007AFF,#5AC8FA); }
+.sp-android { background: linear-gradient(135deg,#3DDC84,#00C853); }
+.shortcut-platform .step              { padding-bottom: 14px; }
+.shortcut-platform .step-num         { width: 26px; height: 26px; font-size: .72rem; }
+.shortcut-platform .step::before     { left: 12px; top: 28px; }
+.shortcut-platform .step-body h4     { font-size: .82rem; }
+.shortcut-platform .step-body p      { font-size: .78rem; }
+.shortcut-note { margin-top: 10px; padding: 9px 12px; background: var(--bg4); border-radius: var(--r12); font-size: .78rem; color: var(--text2); }
+
+/* ── CMP TABLE ── */
+.cmp-table-wrap { overflow-x: auto; }
+.cmp-table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+.cmp-table th {
+  text-align: left; padding: 9px 11px; background: var(--bg3);
+  color: var(--muted); font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em;
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+.cmp-table td { padding: 9px 11px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: middle; white-space: nowrap; }
+.cmp-table tr:hover td { background: var(--surface); }
+.cmp-tick  { color: var(--green); font-weight: 700; }
+.cmp-cross { color: var(--muted); }
+.cmp-part  { color: var(--amber); }
+
+/* ── FAQ ── */
+.faq-list { display: flex; flex-direction: column; gap: 7px; }
+.faq-item { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--r16); overflow: hidden; transition: border-color .2s; }
+.faq-item[open] { border-color: var(--border2); }
+.faq-q {
+  padding: 14px 16px; font-size: .9rem; font-weight: 600; color: var(--text);
+  cursor: pointer; display: flex; align-items: center;
+  justify-content: space-between; gap: 10px; list-style: none;
+}
+.faq-q::after {
+  content:'+'; flex-shrink: 0; width: 20px; height: 20px;
+  background: var(--grad-btn); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .8rem; color: #fff; font-weight: 700;
+}
+.faq-item[open] .faq-q::after { content:'−'; }
+.faq-q::-webkit-details-marker { display: none; }
+.faq-a   { padding: 0 16px 14px; border-top: 1px solid var(--border); }
+.faq-a p { font-size: .86rem; padding-top: 12px; }
+
+/* ── REVIEWS ── */
+.reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.review-card  { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--r20); padding: 16px; transition: border-color .2s; }
+.review-card:hover { border-color: var(--border2); }
+.review-header { display: flex; align-items: center; gap: 9px; margin-bottom: 7px; }
+.review-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--grad-btn); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.review-name   { font-size: .85rem; font-weight: 700; color: var(--text); }
+.review-device { font-size: .7rem; color: var(--muted); }
+.review-stars  { color: var(--iy); font-size: .8rem; margin-bottom: 7px; }
+.review-text   { font-size: .8rem; color: var(--text2); font-style: italic; margin-bottom: 9px; }
+.review-vpn    { display: inline-block; padding: 2px 7px; background: rgba(225,48,108,.07); border: 1px solid rgba(225,48,108,.14); border-radius: var(--pill); font-size: .68rem; color: var(--ipk); font-weight: 600; }
+
+/* ── INLINE LIST ── */
+.inline-list    { padding-left: 16px; }
+.inline-list li { margin-bottom: 4px; color: var(--text2); font-size: .83rem; }
+
+/* ── FOOTER ── */
+.site-footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 44px 0 28px; position: relative; }
+.site-footer::before { content:''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad-insta); }
+.footer-grid  { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 28px; margin-bottom: 28px; }
+.footer-logo  { display: flex; align-items: center; gap: 7px; font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .97rem; margin-bottom: 9px; }
+.footer-desc  { font-size: .8rem; color: var(--text2); line-height: 1.6; }
+.footer-col h5   { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 10px; }
+.footer-col ul   { list-style: none; }
+.footer-col li   { margin-bottom: 6px; }
+.footer-col a    { font-size: .8rem; color: var(--text2) !important; }
+.footer-col a:hover { color: var(--text) !important; }
+.footer-bottom { padding-top: 18px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+.footer-copy   { font-size: .75rem; color: var(--muted); }
+.footer-note   { font-size: .72rem; color: var(--muted); max-width: 460px; text-align: right; }
+
+/* ── ANIMATIONS ── */
+.fade-up            { opacity: 0; transform: translateY(18px); transition: all .55s ease; }
+.fade-up.visible    { opacity: 1; transform: none; }
+.delay-1            { transition-delay: .1s; }
+.delay-2            { transition-delay: .2s; }
+.delay-3            { transition-delay: .3s; }
+.vpn-card.hidden    { display: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-grid       { grid-template-columns: 1fr; }
+  .hero-visual     { display: none; }
+  .status-grid     { grid-template-columns: 1fr 1fr; }
+  .bento-grid      { grid-template-columns: 1fr 1fr; }
+  .bento-card.wide { grid-column: span 2; }
+  .tldr-grid       { grid-template-columns: 1fr 1fr; }
+  .info-grid       { grid-template-columns: 1fr; }
+  .footer-grid     { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .reviews-grid    { grid-template-columns: 1fr 1fr; }
+  .vpn-meta-row    { grid-template-columns: repeat(2,1fr); }
+  .shortcuts-grid  { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .section    { padding: 40px 0; }
+  .section-sm { padding: 24px 0; }
+  .nav-pills  { display: none; }
+  .burger     { display: flex; }
+  .nav-cta    { display: none; }
+  .tldr-grid     { grid-template-columns: 1fr; }
+  .footer-grid   { grid-template-columns: 1fr; }
+  .reviews-grid  { grid-template-columns: 1fr; }
+  .pros-cons     { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .footer-note   { text-align: center; }
+}
+@media (max-width: 480px) {
+  .vpn-card-inner { padding: 14px; }
+  .status-grid    { grid-template-columns: 1fr; }
+  .bento-grid     { grid-template-columns: 1fr; }
+  .bento-card.wide { grid-column: span 1; }
+  .vpn-meta-row   { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* ── ADDITIONS FOR NEW HTML STRUCTURE ─────────────────── */
+
+/* ── NEW TL;DR SECTION ── */
+.tldr-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.tldr-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r20); padding: 16px;
+  display: flex; flex-direction: column; gap: 5px; transition: border-color .2s;
+}
+.tldr-card:hover { border-color: var(--border2); }
+.tldr-card.tldr-top { border-color: rgba(225,48,108,.22); background: rgba(225,48,108,.04); }
+.tldr-card.tldr-free { border-color: rgba(34,197,94,.14); }
+.tldr-rank { font-size: .68rem; font-weight: 700; color: var(--ipk); text-transform: uppercase; letter-spacing: .04em; }
+.tldr-card.tldr-free .tldr-rank { color: var(--green); }
+.tldr-name { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .95rem; color: var(--text); }
+.tldr-tag  { font-size: .7rem; color: var(--text2); }
+.tldr-desc { font-size: .77rem; color: var(--text2); flex: 1; }
+.tldr-btn  {
+  display: inline-block; margin-top: 6px; padding: 5px 12px;
+  background: var(--grad-btn); color: #fff; border-radius: var(--pill);
+  font-size: .72rem; font-weight: 700; transition: opacity .2s;
+  text-decoration: none; align-self: flex-start;
+}
+.tldr-btn:hover { opacity: .85; color: #fff; }
+
+/* ── STATUS CARDS (new class names) ── */
+.status-card { padding: 15px; border-radius: var(--r20); border: 1px solid var(--border); }
+.status-card.status-blocked { background: rgba(244,63,94,.05);  border-color: rgba(244,63,94,.14);  }
+.status-card.status-partial { background: rgba(245,158,11,.05); border-color: rgba(245,158,11,.14); }
+.status-card.status-works   { background: rgba(34,197,94,.05);  border-color: rgba(34,197,94,.14);  }
+.status-title { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .88rem; margin-bottom: 5px; color: var(--text); }
+.status-desc  { font-size: .78rem; color: var(--text2); }
+
+/* ── BENTO TITLES ── */
+.bento-title { font-size: .95rem; margin-bottom: 5px; }
+.bento-desc  { font-size: .82rem; color: var(--text2); margin-bottom: 8px; }
+.bento-badge {
+  display: inline-block; padding: 2px 8px;
+  background: rgba(225,48,108,.08); border: 1px solid rgba(225,48,108,.16);
+  border-radius: var(--pill); font-size: .66rem; color: var(--ipk); font-weight: 600;
+}
+
+/* ── VPN CARDS (new structure) ── */
+.vpn-card-header {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 18px 20px 14px; flex-wrap: wrap;
+}
+.vpn-card.vpn-card-featured { border-color: rgba(225,48,108,.22); }
+.vpn-card.vpn-card-featured::before { opacity: 1; }
+
+.vpn-logo-wrap { flex-shrink: 0; }
+.vpn-logo-letter {
+  width: 40px; height: 40px; border-radius: var(--r12);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 800;
+  font-size: 1.1rem; color: #fff;
+}
+.vpn-title-wrap { flex: 1; min-width: 0; }
+.vpn-card .vpn-name { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: 1.08rem; color: var(--text); }
+.vpn-card .vpn-tagline { font-size: .77rem; color: var(--text2); }
+.vpn-rank {
+  flex-shrink: 0; width: 36px; height: 36px; border-radius: var(--r12);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 800; font-size: .9rem;
+  background: var(--bg4); border: 1px solid var(--border); color: var(--text2);
+}
+.vpn-rank.rank-1 { background: var(--grad-insta); color: #fff; border: none; box-shadow: 0 4px 14px rgba(225,48,108,.32); }
+.vpn-rank.rank-2 { background: linear-gradient(135deg,#C13584,#E1306C); color: #fff; border: none; }
+.vpn-rank.rank-3 { background: linear-gradient(135deg,#833AB4,#C13584); color: #fff; border: none; }
+.vpn-verdict-badge {
+  padding: 3px 10px; background: var(--grad-btn); color: #fff;
+  border-radius: var(--pill); font-size: .68rem; font-weight: 700;
+  flex-shrink: 0; align-self: flex-start;
+}
+.vpn-card-body { padding: 0 20px 16px; }
+.vpn-summary { font-size: .86rem; color: var(--text2); margin-bottom: 14px; }
+
+/* ── VPN TEST TABLE ── */
+.vpn-test-table {
+  background: var(--bg4); border-radius: var(--r16);
+  overflow: hidden; margin-bottom: 14px; border: 1px solid var(--border);
+}
+.vtt-header { padding: 8px 12px; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); border-bottom: 1px solid var(--border); }
+.vtt-row { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.vtt-row:last-child { border-bottom: none; }
+.vtt-device { font-size: .78rem; color: var(--text); font-weight: 500; min-width: 160px; flex-shrink: 0; }
+.vtt-result { font-size: .78rem; color: var(--text2); }
+.vtt-result.vtt-ok { color: var(--green); }
+
+/* ── VPN PROS CONS (new structure) ── */
+.vpn-pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.pros-col { background: var(--bg4); border-radius: var(--r16); padding: 12px 14px; border-left: 3px solid var(--green); }
+.cons-col { background: var(--bg4); border-radius: var(--r16); padding: 12px 14px; border-left: 3px solid var(--rose); }
+.pros-col .pros-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--green); margin-bottom: 8px; }
+.cons-col .cons-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--rose); margin-bottom: 8px; }
+.pros-list, .cons-list { list-style: none; }
+.pros-list li, .cons-list li { position: relative; padding-left: 13px; font-size: .8rem; color: var(--text2); margin-bottom: 4px; }
+.pros-list li::before { content:'+'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.cons-list li::before { content:'−'; position: absolute; left: 0; color: var(--rose); font-weight: 700; }
+
+/* ── VPN EXTRA ── */
+.vpn-extra-content { }
+.vpn-extra-content h4 { font-size: .95rem; margin-bottom: 9px; }
+.vpn-extra-content p { font-size: .86rem; color: var(--text2); margin-bottom: 9px; }
+
+/* ── VPN CARD FOOTER ── */
+.vpn-card-footer {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 12px 20px; background: var(--bg4); border-top: 1px solid var(--border);
+}
+.vpn-expand-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 8px 14px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--pill); font-size: .78rem; font-weight: 600;
+  color: var(--text2); cursor: pointer; transition: all .2s;
+}
+.vpn-expand-btn:hover { background: var(--surface2); color: var(--text); }
+.vpn-expand-btn.open { border-color: var(--border2); color: var(--ipk); }
+.vpn-expand-btn .arrow { transition: transform .25s; display: inline-block; }
+.vpn-extra { display: none; padding: 18px 20px; border-top: 1px solid var(--border); background: var(--bg2); }
+.vpn-extra.open { display: block; }
+
+/* ── INFO CARDS (new structure) ── */
+.info-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 22px; }
+.info-card-num {
+  width: 30px; height: 30px; background: var(--grad-btn);
+  border-radius: var(--r8); display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .78rem; color: #fff; margin-bottom: 9px; flex-shrink: 0;
+}
+.info-card-title { font-size: .93rem; margin-bottom: 5px; color: var(--text); }
+.info-card-desc  { font-size: .82rem; color: var(--text2); }
+
+/* ── AUTO-VPN SECTION ── */
+.auto-vpn-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.auto-vpn-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r20); padding: 18px; transition: border-color .2s;
+}
+.auto-vpn-card:hover { border-color: var(--border2); }
+.auto-vpn-icon { font-size: 1.8rem; margin-bottom: 10px; }
+.auto-vpn-title { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .95rem; margin-bottom: 6px; color: var(--text); }
+.auto-vpn-desc { font-size: .82rem; color: var(--text2); margin-bottom: 12px; }
+
+/* ── SHORTCUTS NEW STRUCTURE ── */
+.shortcut-platform-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.sp-icon { font-size: 1.5rem; flex-shrink: 0; }
+.sp-title { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .95rem; color: var(--text); margin-bottom: 3px; }
+.sp-note  { font-size: .72rem; color: var(--text2); }
+.shortcut-steps { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.shortcut-step { display: flex; align-items: flex-start; gap: 10px; }
+.ss-num {
+  flex-shrink: 0; width: 26px; height: 26px; background: var(--grad-btn);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: .72rem; font-weight: 700; color: #fff;
+}
+.ss-text { font-size: .83rem; color: var(--text2); padding-top: 3px; }
+
+/* ── INSTALL STEPS (new structure) ── */
+.install-steps { display: flex; flex-direction: column; gap: 0; }
+.install-step {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding-bottom: 20px; position: relative;
+}
+.install-step:not(:last-child)::before {
+  content:''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: var(--border);
+}
+.step-circle {
+  flex-shrink: 0; width: 38px; height: 38px; background: var(--grad-btn);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .9rem; color: #fff; position: relative; z-index: 1;
+  box-shadow: 0 3px 10px rgba(225,48,108,.25);
+}
+.step-body { flex: 1; padding-top: 8px; }
+.step-title { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .93rem; margin-bottom: 4px; color: var(--text); }
+.step-desc { font-size: .83rem; color: var(--text2); }
+
+/* ── NO-VPN SECTION ── */
+.novpn-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.novpn-card {
+  border-radius: var(--r20); padding: 16px; border: 1px solid var(--border);
+  background: var(--bg3);
+}
+.novpn-card.novpn-no  { border-color: rgba(244,63,94,.14); background: rgba(244,63,94,.03); }
+.novpn-card.novpn-yes { border-color: rgba(34,197,94,.14);  background: rgba(34,197,94,.03);  }
+.novpn-status { font-size: .72rem; font-weight: 700; margin-bottom: 6px; color: var(--text2); }
+.novpn-card.novpn-no  .novpn-status { color: var(--rose); }
+.novpn-card.novpn-yes .novpn-status { color: var(--green); }
+.novpn-title { font-size: .88rem; font-weight: 700; margin-bottom: 5px; color: var(--text); }
+.novpn-desc  { font-size: .8rem; color: var(--text2); }
+
+/* ── FREE VPN SECTION ── */
+.free-vpn-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 22px; }
+.free-vpn-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--r20); padding: 16px;
+}
+.free-vpn-name { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .97rem; margin-bottom: 4px; color: var(--text); }
+.free-vpn-highlight {
+  display: inline-block; padding: 2px 8px; margin-bottom: 9px;
+  background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.18);
+  border-radius: var(--pill); font-size: .68rem; color: var(--green); font-weight: 600;
+}
+.free-vpn-list { list-style: none; margin-bottom: 10px; }
+.free-vpn-list li { font-size: .78rem; color: var(--text2); padding-left: 12px; position: relative; margin-bottom: 4px; }
+.free-vpn-list li::before { content:'•'; position: absolute; left: 0; color: var(--ipk); }
+.free-vpn-caveat { font-size: .72rem; color: var(--amber); }
+
+/* ── REGISTRATION STEPS ── */
+.reg-steps { display: flex; flex-direction: column; gap: 0; }
+.reg-step { display: flex; gap: 16px; padding-bottom: 20px; position: relative; }
+.reg-step:not(:last-child)::before {
+  content:''; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: var(--border);
+}
+.rs-num {
+  flex-shrink: 0; width: 38px; height: 38px; background: var(--grad-btn);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .9rem; color: #fff; position: relative; z-index: 1;
+}
+.rs-body { flex: 1; padding-top: 7px; }
+.rs-title { font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: .93rem; margin-bottom: 4px; color: var(--text); }
+.rs-desc { font-size: .83rem; color: var(--text2); }
+
+/* ── COMPARE TABLE (new class names) ── */
+.table-wrap { overflow-x: auto; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: .83rem; }
+.compare-table th {
+  text-align: left; padding: 9px 11px; background: var(--bg3);
+  color: var(--muted); font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em;
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+.compare-table td { padding: 9px 11px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: middle; }
+.compare-table tr:hover td { background: var(--surface); }
+.compare-table .tr-highlight td { background: rgba(225,48,108,.04); }
+.td-yes  { color: var(--green) !important; font-weight: 600; }
+.td-ok   { color: var(--amber) !important; }
+.td-no   { color: var(--muted) !important; }
+
+/* ── FAQ (faq-a direct text) ── */
+.faq-a { padding: 12px 16px 14px; font-size: .86rem; color: var(--text2); border-top: 1px solid var(--border); }
+
+/* ── REVIEW DATE & META ── */
+.review-meta { flex: 1; }
+.review-date { font-size: .7rem; color: var(--muted); }
+.review-stars { color: var(--iy); font-size: .85rem; }
+
+/* ── FOOTER (new structure) ── */
+.footer-inner { display: grid; grid-template-columns: 2fr 3fr; gap: 36px; margin-bottom: 28px; }
+.footer-brand .footer-logo { display: flex; align-items: center; gap: 8px; font-family: 'Plus Jakarta Sans',sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
+.footer-about { font-size: .8rem; color: var(--text2); line-height: 1.6; }
+.footer-links { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.footer-col-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 10px; }
+.footer-col a { display: block; font-size: .8rem; color: var(--text2); margin-bottom: 6px; }
+.footer-col a:hover { color: var(--text); }
+.footer-disclaimer { font-size: .72rem; color: var(--muted); max-width: 500px; }
+
+/* ── SECTION UTILITIES ── */
+.section-intro { font-size: .92rem; color: var(--text2); max-width: 700px; margin-bottom: 24px; }
+.section-label { display: inline-block; padding: 3px 10px; background: rgba(225,48,108,.08); border: 1px solid rgba(225,48,108,.16); border-radius: var(--pill); font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ipk); margin-bottom: 10px; }
+
+/* ── BUTTONS EXTENDED ── */
+.btn { display: inline-flex; align-items: center; padding: 10px 20px; border-radius: var(--pill); font-size: .88rem; font-weight: 700; transition: all .2s; text-decoration: none; border: none; cursor: pointer; }
+.btn-primary { background: var(--grad-btn); color: #fff; box-shadow: 0 4px 16px rgba(225,48,108,.24); }
+.btn-primary:hover { opacity: .86; color: #fff; transform: translateY(-1px); }
+.btn-ghost { background: var(--surface); border: 1px solid var(--border2); color: var(--text); }
+.btn-ghost:hover { background: var(--surface2); color: var(--text); }
+.btn.btn-sm { padding: 7px 14px; font-size: .78rem; }
+
+/* ── SECTION SPACING ── */
+.section    { padding: 56px 0; }
+.section-sm { padding: 36px 0; }
+
+/* ── RESPONSIVE ADDITIONS ── */
+@media (max-width: 900px) {
+  .tldr-grid       { grid-template-columns: repeat(2,1fr); }
+  .info-cards      { grid-template-columns: repeat(2,1fr); }
+  .auto-vpn-grid   { grid-template-columns: repeat(2,1fr); }
+  .novpn-grid      { grid-template-columns: repeat(2,1fr); }
+  .free-vpn-grid   { grid-template-columns: repeat(2,1fr); }
+  .footer-inner    { grid-template-columns: 1fr; }
+  .footer-links    { grid-template-columns: repeat(3,1fr); }
+  .vpn-pros-cons   { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .tldr-grid       { grid-template-columns: 1fr; }
+  .info-cards      { grid-template-columns: 1fr; }
+  .auto-vpn-grid   { grid-template-columns: 1fr; }
+  .novpn-grid      { grid-template-columns: 1fr; }
+  .free-vpn-grid   { grid-template-columns: 1fr 1fr; }
+  .vpn-pros-cons   { grid-template-columns: 1fr; }
+  .vpn-card-header { flex-wrap: wrap; }
+  .vtt-device      { min-width: 120px; }
+  .footer-links    { grid-template-columns: 1fr 1fr; }
+  .compare-table   { font-size: .72rem; }
+}
+@media (max-width: 480px) {
+  .free-vpn-grid   { grid-template-columns: 1fr; }
+  .footer-links    { grid-template-columns: 1fr; }
+}
+
+.vpn-card-footer-empty { display: none; }
